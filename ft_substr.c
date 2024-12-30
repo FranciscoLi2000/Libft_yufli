@@ -6,16 +6,15 @@
 /*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:33:45 by yufli             #+#    #+#             */
-/*   Updated: 2024/12/29 21:35:39 by yufli            ###   ########.fr       */
+/*   Updated: 2024/12/30 16:02:23 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stddef.h>
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, unsigned int len);
 
 int	ft_strlen(const char *str)
 {
@@ -27,24 +26,23 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, unsigned int len)
 {
-	char	*substr;
-	size_t		i;
-	size_t		s_len;
+	unsigned int	i;
+	char			*substr;
 
-	if (s == NULL)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (NULL);
-	if (len > s_len - start)
-		len = s_len - start;
 	substr = malloc((len + 1) * sizeof(char));
-	if (substr == NULL)
+	if (s == NULL || substr == NULL)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	if (start >= (unsigned int)ft_strlen(s))
+	{
+		substr[0] = '\0';
+		return (substr);
+	}
+	if (len > (unsigned int)ft_strlen(s) - start)
+		len = (unsigned int)ft_strlen(s) - start;
+	while (i < len && s[start + i])
 	{
 		substr[i] = s[start + i];
 		i++;
