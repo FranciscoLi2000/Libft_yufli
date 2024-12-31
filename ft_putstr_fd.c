@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 13:23:38 by yufli             #+#    #+#             */
-/*   Updated: 2024/12/30 12:50:25 by yufli            ###   ########.fr       */
+/*   Created: 2024/12/31 19:14:09 by yufli             #+#    #+#             */
+/*   Updated: 2024/12/31 19:20:14 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, unsigned int n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned int	i;
+	int	len;
 
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (i < n && (str1[i] != '\0' || str2[i] != '\0'))
-	{
-		if (str1[i] != str2[i])
-			return ((unsigned char)str1[i]
-				- (unsigned char)str2[i]);
-		i++;
-	}
-	return (0);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	write(fd, s, len);
 }

@@ -1,13 +1,24 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/27 17:26:18 by yufli             #+#    #+#             */
+/*   Updated: 2024/12/31 19:57:58 by yufli            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_strlcpy(char *dest, const char *src, unsigned int size);
+#include <unistd.h>
+#include "libft.h"
 
 int	ft_strlcpy(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	i;
 	unsigned int	len;
 
-	if (src == NULL)
+	if (dest == NULL || src == NULL)
 		return (0);
 	len = 0;
 	while (src[len] != '\0')

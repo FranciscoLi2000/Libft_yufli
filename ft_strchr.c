@@ -1,16 +1,25 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/28 12:50:09 by yufli             #+#    #+#             */
+/*   Updated: 2024/12/31 20:14:17 by yufli            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c);
+#include <unistd.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0')
+	while (*s != (char)c)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
+		if (*s == '\0')
+			return (NULL);
 		s++;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
+	return ((char *)s);
 }

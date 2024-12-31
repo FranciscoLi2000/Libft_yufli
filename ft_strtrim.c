@@ -1,55 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 15:39:01 by yufli             #+#    #+#             */
+/*   Updated: 2024/12/31 19:47:46 by yufli            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdlib.h>
-
-char	*ft_strtrim(char const *s1, char const *set);
-
-int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
-int	ft_strlcpy(char *dest, const char *src, unsigned int size)
-{
-	unsigned int	i;
-	unsigned int	len;
-
-	if (src == NULL)
-		return (0);
-	len = 0;
-	while (src[len] != '\0')
-		len++;
-	if (size == 0)
-		return (len);
-	i = 0;
-	while (src[i] != '\0' && i < size - 1)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
