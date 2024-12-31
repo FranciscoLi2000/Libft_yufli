@@ -3,32 +3,6 @@
 
 char	**ft_split(char const *s, char c);
 
-int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
 int count_substrings(char const *s, char c)
 {
     int i;
@@ -57,27 +31,50 @@ int count_substrings(char const *s, char c)
     return (count);
 }
 
-char	*ft_substr(char const *s, unsigned int start, unsigned int len)
+static char	*word_dup(const char *str, int start, int finish)
 {
-	unsigned int	i;
-	char			*substr;
+	char	*word;
+	int		i;
 
-	substr = malloc((len + 1) * sizeof(char));
-	if (s == NULL || substr == NULL)
-		return (NULL);
 	i = 0;
-	if (start >= (unsigned int)ft_strlen(s))
-	{
-		substr[0] = '\0';
-		return (substr);
-	}
-	if (len > (unsigned int)ft_strlen(s) - start)
-		len = (unsigned int)ft_strlen(s) - start;
-	while (i < len && s[start + i])
-	{
-		substr[i] = s[start + i];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
+}
+
+char **ft_split(char const *s, char c)
+{
+    char **result;  // 存储最终的字符串数组
+    int i;          // 主字符串的索引
+    int j;          // 结果数组的索引
+    int word_start; // 每个单词的起始位置
+
+    result = malloc((count_substrings(s, c) + 1) * sizeof(char *)); // +1 是为了存储最后的 NULL
+    if (!s || !result)
+        return NULL;
+    i = 0;
+    j = 0;
+    while (s[i] != '\0' && s[i] == c)   // 跳过分隔符
+    {
+        if (s[i] != '\0') // 如果还没到字符串末尾
+        {
+            word_start = i; // 记录单词起始位置
+            while (s[i] && s[i] != c)   // 找到单词结束位置
+                i++;
+            result[j] = ft_substr(s, word_start, i - word_start);   // 提取子字符串
+            if (!result[j]) // 如果分配失败
+            {
+                while (j > 0)   // 需要释放之前分配的所有内存
+                    free(result[--j]);
+                free(result);
+                return (NULL);
+            }
+            j++;
+        }
+        i++;
+    }
+    result[j] = NULL; // 设置最后的 NULL 指针
+    return (result);
 }
