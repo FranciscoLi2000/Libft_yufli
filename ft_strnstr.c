@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 15:00:05 by yufli             #+#    #+#             */
-/*   Updated: 2024/12/30 13:18:00 by yufli            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
-#include "libft.h"
+
+char	*ft_strnstr(const char *big, const char *little, unsigned int len);
 
 char	*ft_strnstr(const char *big, const char *little, unsigned int len)
 {

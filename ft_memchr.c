@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 13:37:52 by yufli             #+#    #+#             */
-/*   Updated: 2024/12/28 20:47:15 by yufli            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
-#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, unsigned int n);
 
 void	*ft_memchr(const void *s, int c, unsigned int n)
 {
