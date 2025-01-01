@@ -1,16 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yufli <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 15:33:45 by yufli             #+#    #+#             */
-/*   Updated: 2024/12/31 20:26:58 by yufli            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
 
@@ -42,4 +31,17 @@ char	*ft_substr(char const *s, unsigned int start, unsigned int len)
 	}
 	substr[i] = '\0';
 	return (substr);
+}
+
+int	main(void)
+{
+	int	start = 5;
+	int	len = 3;
+	char			*s;
+	char				*substr;
+
+	s = 'abcdefghijklmn';
+	ft_substr(s, start, len);
+	printf("substr: %s\n", substr);
+	return (0);
 }
