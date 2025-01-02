@@ -4,62 +4,89 @@
 
 char	**ft_split(char const *s, char c);
 
-int	count_substr(char const *s, char c)
+static char	**allocate_substrings(char const *s, char c, int *count)
 {
-    int i;
-    int count;
+	char	**result;
+	int		i;
 
-    count = 0;
-    if (!s)
-        return (NULL);
-    i = 0;
-    while (s[i] != '\0')
-    {
-        while (s[i] == c)
-            i++;
-        if (s[i] != '\0')
-        {
-            count++;
-            while (s[i] != '\0' && s[i] != c)
-                i++;
-        }
-    }
-    return (count);
+	*count = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+		{
+			(*count)++;
+			while (s[i] != '\0' && s[i] != c)
+				i++;
+		}
+	}
+	result = malloc((*count + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	return (result);
+}
+
+static int	get_wordlen(const char *s, char c, int start)
+{
+	int	len;
+
+	len = 0;
+	while (s[start + len] != '\0' && s[start + len] != c)
+		len++;
+	return (len);
+}
+
+static int	store_substrings(char const *s, char c, char **result)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+		{
+			result[j] = ft_substr(s, i, get_wordlen(s, c, i));
+			if (!result[j])
+				return (j);
+			j++;
+			while (s[i] != '\0' && s[i] != c)
+				i++;
+		}
+	}
+	result[j] = NULL;
+	return (-1);
+}
+
+static void	free_split_memory(char **result, int j)
+{
+	while (j >= 0)
+	{
+		free(result[j]);
+		j--;
+	}
+	free(result);
 }
 
 char	**ft_split(char const *s, char c)
 {
-    char    *result;
-    int         i;
-    int         j;
+	char	**result;
+	int		failed_index;
+	int		count;
 
-    j = 0;
-    result = malloc((count_substr(s, c) + 1) * sizeof(char *));
-    if (!result || !s)
-        return (NULL);
-    i = 0;
-    while (s[i] != '\0')
-    {
-        while (s[i] == c)
-            i++;
-        if (s[i] != '\0')
-        {
-            start = i;
-            while (s[i] != '\0' && s[i] != c)
-                i++;
-            result[j] = malloc((i - start + 1) * sizeof(char));
-            if (!result[j])
-            {
-                while (j > 0)
-                    free(result[j]);
-                free(result);
-                return (NULL);
-            }
-            ft_strlcpy(result[j], &s[start], i - start);
-            result[j][i - start] = '\0';
-            j++;
-        }
-        result[j] = NULL;
-        return (result);
-    }
+	result = allocate_substrings(s, c, &count);
+	if (!s || !result)
+		return (NULL);
+	failed_index = store_substrings(s, c, result);
+	if (failed_index != -1)
+	{
+		free_split_memory(result, failed_index - 1);
+		return (NULL);
+	}
+	return (result);
 }

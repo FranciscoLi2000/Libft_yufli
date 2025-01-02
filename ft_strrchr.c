@@ -8,6 +8,7 @@ char	*ft_strrchr(const char *s, int c)
 	len = 0;
 	while (s[len] != '\0')
 		len++;
+
 	while (len >= 0)
 	{
 		if (s[len] == (char)c)

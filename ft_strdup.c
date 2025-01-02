@@ -12,12 +12,15 @@ char	*ft_strdup(const char *s)
 	len = 0;
 	while (s[len] != '\0')
 		len++;
+
 	if (s == 0)
 		return (0);
+
 	size = len + 1;
 	dst = malloc(size * sizeof(char));
 	if (dst == 0)
 		return (0);
+
 	i = 0;
 	while (s[i] != '\0')
 	{
