@@ -9,8 +9,8 @@ void	ft_putnbr_fd(int nbr, int fd)
 	}
 	if (nbr < 0)
 	{
-		ft_putchar('-', fd);
-		nb = -nb;
+		ft_putchar_fd('-', fd);
+		nbr = -nbr;
 	}
 	else if (nbr > 9)
 		ft_putnbr_fd(nbr / 10, fd);

@@ -40,10 +40,10 @@ char	*ft_itoa(int n)
 	i = len - 1;
 	while (nb != 0)
 	{
-		result[i] = ((nbr % 10) + '0');
+		res[i] = ((nb % 10) + '0');
 		nb = nb / 10;
 		i--;
 	}
-	result[len] = 0;
+	res[len] = 0;
 	return (res);
 }

@@ -1,20 +1,20 @@
 #include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
-	unsigned int	src_len;
+	size_t	i;
+	size_t	src_len;
 
-	src_len = (unsigned int)ft_strlen(src);
-	if (size > 0)
+	src_len = ft_strlen(src);
+	if (dstsize > 0)
 	{
 		i = 0;
-		while (src[i] && i < size - 1)
+		while (src[i] && i < dstsize - 1)
 		{
-			dest[i] = src[i];
+			dst[i] = src[i];
 			i++;
 		}
-		dest[i] = '\0';
+		dst[i] = '\0';
 	}
 	return (src_len);
 }
