@@ -1,7 +1,7 @@
 CC		= cc
 CFLAGS		= -Wall -Wextra -Werror
 
-INCLUDE		= -I includes
+INCLUDE		= -I libft.h
 
 SRC		= ft_libc/ft_atoi.c ft_libc/ft_isalnum.c ft_libc/ft_isdigit.c \
 		ft_libc/ft_memcmp.c ft_libc/ft_memset.c ft_libc/ft_strlcat.c \
