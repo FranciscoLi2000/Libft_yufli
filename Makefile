@@ -1,46 +1,42 @@
+NAME		= libft.a
+
+SRC		= ft_memmove.c ft_strlcpy.c ft_memset.c ft_strlen.c ft_putchar_fd.c \
+		ft_strmapi.c ft_atoi.c ft_putendl_fd.c ft_strncmp.c ft_bzero.c \
+		ft_putnbr_fd.c ft_strnstr.c ft_calloc.c ft_putstr_fd.c ft_strrchr.c \
+		ft_isalnum.c ft_split.c ft_strtrim.c ft_isalpha.c ft_strchr.c ft_substr.c \
+		ft_isascii.c ft_strdup.c ft_tolower.c ft_isdigit.c ft_memchr.c \
+		ft_striteri.c ft_toupper.c ft_isprint.c ft_memcmp.c ft_strjoin.c \
+		ft_itoa.c ft_memcpy.c ft_strlcat.c
+
+SRCS		= ${addprefix ${PRE}, ${SRC}}
+
+OBJS		= ${SRCS:.c=.o}
+
+PRE			= ./srcs/
+HEAD			= ./includes/
+
+AR			= ar rc
+RM			= rm -f
+LIB			= ranlib
+
 CC		= cc
 CFLAGS		= -Wall -Wextra -Werror
 
-INCLUDE		= -I libft.h
+all: ${NAME}
 
-SRC		= ft_libc/ft_atoi.c ft_libc/ft_isalnum.c ft_libc/ft_isdigit.c \
-		ft_libc/ft_memcmp.c ft_libc/ft_memset.c ft_libc/ft_strlcat.c \
-		ft_libc/ft_strncmp.c ft_libc/ft_tolower.c ft_libc/ft_bzero.c \
-		ft_libc/ft_isalpha.c ft_libc/ft_isprint.c ft_libc/ft_memcpy.c \
-		ft_libc/ft_strchr.c ft_libc/ft_strlcpy.c ft_libc/ft_strnstr.c \
-		ft_libc/ft_toupper.c ft_libc/ft_calloc.c ft_libc/ft_isascii.c \
-		ft_libc/ft_memchr.c ft_libc/ft_memmove.c ft_libc/ft_strdup.c \
-		ft_libc/ft_strlen.c ft_libc/ft_strrchr.c \
-		additional/ft_itoa.c additional/ft_putendl_fd.c additional/ft_putstr_fd.c \
-		additional/ft_striteri.c additional/ft_strmapi.c additional/ft_substr.c \
-		additional/ft_putchar_fd.c additional/ft_putnbr_fd.c additional/ft_split.c \
-		additional/ft_strjoin.c additional/ft_strtrim.c
-SRC_BONUS	= bonus/ft_lstadd_back_bonus.c bonus/ft_lstdelone_bonus.c bonus/ft_lstmap_bonus.c \
-		bonus/ft_lstadd_front_bonus.c bonus/ft_lstiter_bonus.c bonus/ft_lstnew_bonus.c \
-		bonus/ft_lstclear_bonus.c bonus/ft_lstlast_bonus.c bonus/ft_lstsize_bonus.c
+.c.o:
+	${CC} ${CFLAGS} -c -I ${HEAD} $< -o ${<:.c=.o}
 
-OBJ		= $(SRC:.c=.o)
-OBJ_BONUS	= $(SRC_BONUS:.c=.o)
-
-NAME	= libft.a
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
-bonus: $(OBJ) $(OBJ_BONUS)
-	ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+${NAME}: ${OBJS}
+	${AR} ${NAME} ${OBJS}
+	${LIB} ${NAME}
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS)
+	rm -f ${OBJS}
 
-fclean: clean
-	rm -f $(NAME)
+fclean:	clean
+	rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY:	all clean fclean re
