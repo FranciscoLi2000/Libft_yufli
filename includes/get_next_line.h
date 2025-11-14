@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 21:01:45 by yufli             #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:47 by yufli            ###   ########.fr       */
+/*   Created: 2025/11/14 21:54:46 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/14 21:56:23 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_isprint(int c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
-}
+# include "libft.h"
+# include <fcntl.h>
+
+# define BUFFER_SIZE 42
+
+
+#endif

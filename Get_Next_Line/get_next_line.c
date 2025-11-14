@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 21:01:45 by yufli             #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:47 by yufli            ###   ########.fr       */
+/*   Created: 2025/11/14 21:57:25 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/14 21:57:41 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-int	ft_isprint(int c)
+char	*get_next_line(int fd)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	static char	*leftover;
+	char		*line;
+
+	leftover = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	leftover = fill_line_buffer(fd, leftover);
+	if (!leftover)
+		return (NULL);
+	line = extract_line(&leftover);
+	return (line);
 }

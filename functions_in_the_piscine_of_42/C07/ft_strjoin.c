@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/14 21:33:54 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/14 21:35:47 by yufli            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 int	return_lenght(int size, char **strs, int size_sep)
@@ -25,7 +37,8 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	}
 	len = return_lenght(size, strs, ft_strlen(sep));
 	i = -1;
-	if ((res = malloc(sizeof(char) * (len + 1))) == NULL)
+	res = malloc(sizeof(char) * (len + 1));
+	if (res == NULL)
 		return (0);
 	while (++i < size)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strs_to_tab.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/14 21:37:28 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/14 21:37:54 by yufli            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "ft_stock_str.h"
 
@@ -36,7 +48,8 @@ void	print_array(t_stock_str *str)
 	i = 0;
 	while (str[i].str != NULL)
 	{
-		printf("Indice: %d - Size: %d - String: %s - Copy: %s\n", i, str[i].size, str[i].str, str[i].copy);
+		printf("Indice: %d - Size: %d - String: %s - Copy: %s\n",
+				i, str[i].size, str[i].str, str[i].copy);
 		i++;	
 	}
 	free(str);

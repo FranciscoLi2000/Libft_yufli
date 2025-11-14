@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   fill_line_buffer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 21:01:45 by yufli             #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:47 by yufli            ###   ########.fr       */
+/*   Created: 2025/11/14 21:58:34 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/14 21:58:37 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-int	ft_isprint(int c)
+char	*fill_line_buffer(int fd, char *left)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	char	*buf;
+	ssize_t	rbytes;
+	char	*tmp;
+
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (free_and_null(left));
 }
