@@ -6,23 +6,22 @@
 #    By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/14 21:41:16 by yufli             #+#    #+#              #
-#    Updated: 2025/11/14 22:38:15 by yufli            ###   ########.fr        #
+#    Updated: 2025/11/16 07:22:18 by yufli            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft_add.a
+NAME	= libft.a
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -I ../includes
-AR			= ar rcs
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -I ../includes
+AR		= ar rcs
 
-SRC_DIR		= .
-SRC			= $(wildcard $(SRC_DIR)/*.c)
+SRC		= $(wildcard LIBC_functions/*.c) $(wildcard Additional/*.c)
 
-OBJ_DIR		= obj
-OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+OBJ_DIR	= obj
+OBJ		= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
 
-DEPS		= $(OBJ:.o=.d)
+DEPS	= $(OBJ:.o=.d)
 
 .SILENT:
 
@@ -30,22 +29,24 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-	@echo "[ADDL] Created $(NAME)"
+	@echo "[libft] $(NAME) created"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+# Pattern rule:
+# target: obj/LIBC_functions/ft_atoi.o
+# prerequisite: LIBC_functions/ft_atoi.c
+
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -MMD -c $< -o $@
-	@echo "[ADDL] Compiled $<"
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	@echo "[libft] Compiled $<"
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "[ADDL] clean done"
+	@echo "[libft] clean done"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "[ADDL] fclean done"
+	@echo "[libft] fclean done"
 
 re: fclean all
 
