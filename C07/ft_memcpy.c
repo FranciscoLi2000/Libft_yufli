@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 21:54:46 by yufli             #+#    #+#             */
-/*   Updated: 2025/11/16 10:35:29 by yufli            ###   ########.fr       */
+/*   Created: 2025/11/14 21:02:19 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/18 14:16:21 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdlib.h>
 
-# include "libft.h"
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char	*tmp_dst;
+	unsigned char	*tmp_src;
 
-# define BUFFER_SIZE 42
-
-char	*fill_line_buffer(int fd, char *left);
-char	*extract_line(char **left);
-char	*get_next_line(int fd);
-
-#endif
+	if (dst == (void *)0 && src == (void *)0)
+		return (dst);
+	tmp_dst = (unsigned char *)dst;
+	tmp_src = (unsigned char *)src;
+	while (n > 0)
+	{
+		*(tmp_dst++) = *(tmp_src++);
+		n--;
+	}
+	return (dst);
+}

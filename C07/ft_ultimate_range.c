@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yufli <yufli@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 21:29:47 by yufli             #+#    #+#             */
-/*   Updated: 2025/11/14 21:29:59 by yufli            ###   ########.fr       */
+/*   Created: 2025/11/14 21:34:03 by yufli             #+#    #+#             */
+/*   Updated: 2025/11/18 10:39:45 by yufli            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_prime(int nb)
+#include <stdlib.h>
+
+int	ft_ultimate_range(int **range, int min, int max)
 {
+	int	*tab;
 	int	i;
 
-	i = 2;
-	if (nb <= 1)
-		return (0);
-	while (i <= nb / i)
+	if (min >= max)
 	{
-		if (nb % i == 0)
-			return (0);
-		i++;
+		*range = NULL;
+		return (0);
 	}
-	return (1);
+	tab = malloc(sizeof(int) * (max - min));
+	if (tab == NULL)
+		return (-1);
+	i = -1;
+	while (++i < max - min)
+		tab[i] = min + i;
+	*range = tab;
+	return (i);
 }
